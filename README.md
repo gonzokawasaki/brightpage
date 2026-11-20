@@ -45,7 +45,7 @@ The code isn't the precious part: any AI can rewrite it. What matters is:
 1. **[brightpage.md](brightpage.md):** one plain-English file that is the whole of Brightpage: what a good lesson is, the rules (privacy, safety, what may not change) and the **product outcomes** every Brightpage file must keep (one file, teacher and student modes, SEND TO TEACHER, student safety, works on iPad).
 2. **The lesson data:** plain JSON inside the file, so any AI or tool can read and write it.
 
-The app in this repo is one way of meeting that standard. The brief sits at the top of every teacher file, so it travels with the lesson.
+The app in this repo is one way of meeting that standard. Any AI can build another from brightpage.md alone, and the **[Brightpage Checker](https://gonzokawasaki.github.io/brightpage/app/check.html)** tests any file against the standard: drop it in and see what passes. The brief sits at the top of every teacher file, so it travels with the lesson.
 
 SEND TO TEACHER saves the work in your Google Drive. [Set it up in 5 minutes](apps-script/SETUP.md). Worried about students tricking an AI? See [security and prompt injection](docs/security.md).
 
