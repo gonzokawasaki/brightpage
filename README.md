@@ -18,6 +18,16 @@ Think of it as a simpler, lighter PowerPoint or Sway:
 
 ---
 
+## Why I made this
+
+I am a teacher in a secondary school, and I wanted a simple, lightweight, free tool that lets me give students direction and tasks to complete, and then collect that work and give feedback, all in one interactive tool.
+
+Office documents are often slow and don't allow for interaction. Students can get lost in the whole "send your documents to me @..." routine.
+
+What if there was an interactive tool that sent work to me straight from the presentation the students are working in, instead of me showing it to them and them forgetting everything?
+
+At the end of the lesson, students hit **SEND TO TEACHER**. Brightpage links to your Google Drive and stores the work they send there.
+
 ## What it is for, and what it isn't
 
 | ✅ It is for | ❌ It is not for |
