@@ -4,7 +4,9 @@ Draft, November 2026.
 
 ## Purpose
 
-Brightpage is a free, open lesson and project format: one small HTML file that looks and presents like a PowerPoint, edits like Sway, runs on iPads, and sends scores and finished work back to the teacher.
+**Brightpage helps teachers structure classroom and online teaching into interactive documents that students work through and complete, task by task.** It is for instruction and collaboration: content, lessons, directed tasks, quizzes and feedback. It is fast, light and easy to change. It is not a print layout tool, a graphic design tool or a secure exam system.
+
+The format is one small HTML file that looks and presents like a PowerPoint, edits like Sway, runs on iPads, and sends scores and finished work back to the teacher.
 
 | Tool | Problem in class |
 | --- | --- |
@@ -29,6 +31,7 @@ Who uses it: teachers make lessons and task templates; students complete tasks o
 
 **Non-goals (on purpose)**
 
+- Not for print: no print layouts, page sizes or booklets. PDF is only for sharing or handing in.
 - No free placement of boxes anywhere on a page. Fixed layouts keep it tidy and fast.
 - No infinite zooming canvas, no fancy transitions (only fade or slide).
 - No video stored inside the file; video is always a link.
@@ -148,11 +151,25 @@ The iPad can't open and run a local HTML file directly (the Files app only previ
 - Camera button; HEIC photos converted and shrunk.
 - Apple Pencil Scribble works in text boxes.
 
+## Images (keeping files light)
+
+Every image is shrunk on the device the moment it is added, before it is saved or uploaded. The full-size original is never stored.
+
+- Longest side at most 1600 px (1024 px "Small" option); JPEG about 80% quality, WebP where the browser can encode it (iPad Safari falls back to JPEG).
+- Screenshots and drawings with transparency stay WebP/PNG so lines stay sharp.
+- Rotation fixed; GPS location and camera data stripped.
+- Several images are processed one at a time with a progress message, so the iPad does not run out of memory.
+- Videos and non-image files are refused with a friendly message (use a video link instead).
+- The same image added twice is stored once.
+- Limits (teacher can change): about 250 KB per image, 6 images per page, warning at 5 MB, no new images over 10 MB, with a "Make file smaller" button that re-shrinks everything to 1024 px.
+- Typical result: a 4 MB iPad photo becomes about 150–250 KB.
+- Submit shows the size and a progress bar, is capped at 10 MB, and retries later if the Wi-Fi drops.
+
 ## Output and submission
 
 A web page can't send email by itself, so finished work leaves through the share sheet or through the teacher's own Google Apps Script.
 
-- **PDF export:** slides (landscape A4), handout (2–3 per page), A5 booklet, worksheet (+ optional answer key).
+- **PDF export:** one simple layout (one page per screen) for sharing or handing in work. Not a print tool.
 - **Share button:** builds the PDF and opens the share sheet. Nothing to set up.
 - **Submit button:** posts to `settings.submitUrl`; the Apps Script saves the PDF + file to Drive → Class → Student, adds a sheet row (name, class, time, tasks done, score), and can email a copy. Offline results wait and send later.
 

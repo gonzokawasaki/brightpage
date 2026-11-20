@@ -2,6 +2,14 @@
 
 **Lessons and student projects as one small HTML file.** Looks and presents like PowerPoint, edits like Sway, runs on iPads, and sends scores and finished work back to the teacher.
 
+## What it is for
+
+**Brightpage helps teachers structure classroom and online teaching into interactive documents that students work through and complete, task by task.**
+
+- It is for **instruction and collaboration**: content, lessons, directed tasks, quizzes and feedback.
+- It is **fast, light and easy to change**: anyone can add a page, fix a typo or drop in a photo in seconds.
+- It is **not** a print layout tool, a graphic design tool or a secure exam system. PDF export exists only to share or hand in work.
+
 > Status: early design. Version 1 is being built. See the [spec](docs/spec.md).
 
 ## Why
