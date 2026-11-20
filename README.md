@@ -14,7 +14,21 @@ Think of it as a simpler, lighter PowerPoint or Sway:
 - 🎤 **Students can make their own simple presentations** and hand them in.
 - 🤖 **AI friendly.** An AI can tidy up a lesson or add a quiz, and you accept or reject each change.
 
-> **Status:** being designed and built (November 2026). A demo will be linked here when it's ready.
+**Try the demos** (open in any browser, on a laptop or an iPad):
+
+- 📊 [Spreadsheets: Formulas](https://gonzokawasaki.github.io/brightpage/examples/spreadsheet-formulas.html): live mini spreadsheet, flip cards, quiz, Excel checklist
+- ⚔ [Character Builder](https://gonzokawasaki.github.io/brightpage/examples/character-builder.html): roll dice to build a character, then write how they react
+
+Each demo opens in **teacher mode**. Click **▶ Preview** to see what students see, or **Send out to students** to make the student copy.
+
+> **Status:** first working version (November 2026). Expect rough edges.
+
+### One file, two modes
+
+- **Teacher mode:** edit pages, set your name, email and Google Drive link. The easiest way to edit is **✨ Edit with AI**: copy the lesson into any AI chat, ask for changes, paste the reply back and accept it.
+- **Student mode:** made with **Send out to students**. Students work through the pages, roll dice, answer, add their own pages and press **SEND TO TEACHER**. They can't change your content, and there are no AI tools.
+
+SEND TO TEACHER saves the work in your Google Drive. [Set it up in 5 minutes](apps-script/SETUP.md). Worried about students tricking an AI? See [security and prompt injection](docs/security.md).
 
 ---
 

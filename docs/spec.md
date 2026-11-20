@@ -38,6 +38,15 @@ Who uses it: teachers make lessons and task templates; students complete tasks o
 - Not a secure exam tool: answers sit inside the file.
 - No accounts or server of its own.
 
+## Two modes, one file
+
+The editor and the presentation are the **same file** in two modes, set by `"mode"` in the data.
+
+- **Teacher mode** (`"mode": "teacher"`): page editor, block editor, Settings (teacher name, email, Google Drive link), Edit with AI, Preview, Save, and **Send out to students**.
+- **Student mode** (`"mode": "student"`): made by *Send out to students*. Teacher pages are read-only; students interact, add their own pages and press SEND TO TEACHER. No AI or editing tools. Answers live in `student.answers` (by block id), never inside the teacher's blocks, and the file carries a `lessonId` fingerprint of the teacher content.
+
+See [security.md](security.md) for prompt-injection protection.
+
 ## File format
 
 A Brightpage file is a normal `.html` file named like `water-cycle.brightpage.html`. It holds three parts:

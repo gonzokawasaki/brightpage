@@ -1,0 +1,66 @@
+{
+ "format": "brightpage", "version": 1, "mode": "teacher",
+ "title": "Spreadsheets: Formulas",
+ "teacher": { "name": "", "email": "" },
+ "settings": { "submitUrl": "", "allowStudentPages": true, "requireName": true, "ai": true },
+ "pages": [
+  { "id": "p1", "title": "", "blocks": [
+   { "id": "b1", "type": "heading", "text": "Spreadsheets: Formulas" },
+   { "id": "b2", "type": "text", "text": "Make the spreadsheet do the maths for you.\n\n**By the end of this lesson I can:**\n- name a cell using its cell reference (like B3)\n- write a formula that starts with =\n- use SUM to add up a range of cells" },
+   { "id": "b3", "type": "callout", "text": "Work through each page. Do every task. At the end, press **SEND TO TEACHER**." }
+  ]},
+  { "id": "p2", "title": "Key words", "blocks": [
+   { "id": "b4", "type": "text", "text": "Tap each card to see what it means." },
+   { "id": "b5", "type": "flip", "cards": [
+     { "front": "Cell", "back": "One box in a spreadsheet. It holds a number, a word or a formula." },
+     { "front": "Cell reference", "back": "The column letter and row number of a cell, e.g. B3." },
+     { "front": "Formula", "back": "A calculation that starts with =, e.g. =B2*C2." },
+     { "front": "Function", "back": "A ready-made formula with a name, e.g. SUM or AVERAGE." },
+     { "front": "Range", "back": "A block of cells written first:last, e.g. D2:D4." },
+     { "front": "Operator", "back": "A maths symbol: + add, - subtract, * multiply, / divide." }
+   ]}
+  ]},
+  { "id": "p3", "title": "Warm up", "blocks": [
+   { "id": "b6", "type": "mcq", "question": "Which of these is a cell reference?", "options": ["3B", "B3", "B+3", "=3"], "answer": 1, "feedback": "The column letter comes first, then the row number." },
+   { "id": "b7", "type": "mcq", "question": "Which symbol means **multiply** in a spreadsheet?", "options": ["x", "*", "÷", "#"], "answer": 1, "feedback": "Spreadsheets use the star * for multiply." }
+  ]},
+  { "id": "p4", "title": "How to write a formula", "blocks": [
+   { "id": "b8", "type": "steps", "title": "Five steps", "items": ["Click the cell where you want the answer.", "Type **=** (every formula starts with =).", "Type the cell references and operators, e.g. **B2*C2**.", "Press **Enter**.", "Change a number. The answer updates by itself!"] },
+   { "id": "b9", "type": "callout", "text": "Use cell references, not the numbers. **=B2*C2** keeps working when the price changes. **=2*3** does not." }
+  ]},
+  { "id": "p5", "title": "Task 1: The class snack stall", "blocks": [
+   { "id": "b10", "type": "text", "text": "Work out the **Total** for each snack, then the **grand total**.\n- D2 to D4: Price × Quantity (e.g. **=B2*C2**)\n- D5: add up the totals with **=SUM(D2:D4)**" },
+   { "id": "b11", "type": "sheet", "title": "Snack stall sales", "cols": 4, "rows": 5,
+     "cells": { "A1": "Snack", "B1": "Price ($)", "C1": "Quantity", "D1": "Total ($)", "A2": "Juice", "B2": "1.5", "C2": "12", "A3": "Cookie", "B3": "0.8", "C3": "25", "A4": "Fruit cup", "B4": "2", "C4": "9", "A5": "Grand total" },
+     "inputs": ["D2", "D3", "D4", "D5"],
+     "checks": [ { "cell": "D2", "value": 18, "formula": true }, { "cell": "D3", "value": 20, "formula": true }, { "cell": "D4", "value": 18, "formula": true }, { "cell": "D5", "value": 56, "formula": true } ],
+     "hint": "Start with = and use the cell references in the same row." }
+  ]},
+  { "id": "p6", "title": "Task 2: Test scores", "blocks": [
+   { "id": "b12", "type": "text", "text": "Use functions to find the **highest**, **lowest** and **average** score.\n- **=MAX(B2:B6)**  **=MIN(B2:B6)**  **=AVERAGE(B2:B6)**" },
+   { "id": "b13", "type": "sheet", "title": "Science test (out of 50)", "cols": 2, "rows": 9,
+     "cells": { "A1": "Student", "B1": "Score", "A2": "Student A", "B2": "34", "A3": "Student B", "B3": "41", "A4": "Student C", "B4": "27", "A5": "Student D", "B5": "45", "A6": "Student E", "B6": "38", "A7": "Highest", "A8": "Lowest", "A9": "Average" },
+     "inputs": ["B7", "B8", "B9"],
+     "checks": [ { "cell": "B7", "value": 45, "formula": true }, { "cell": "B8", "value": 27, "formula": true }, { "cell": "B9", "value": 37, "formula": true } ],
+     "hint": "The range B2:B6 means every score from B2 down to B6." }
+  ]},
+  { "id": "p7", "title": "Task 3: Now in Excel", "blocks": [
+   { "id": "b14", "type": "text", "text": "Open Excel (or Google Sheets). Build your own snack stall with **5 snacks**." },
+   { "id": "b15", "type": "task", "kind": "checklist", "prompt": "Tick each step when you have done it.", "options": ["Headings in row 1: Snack, Price, Quantity, Total", "5 snacks with prices and quantities", "A Total formula for every snack", "A grand total using SUM", "Changed one price and watched the totals update"], "required": true },
+   { "id": "b16", "type": "task", "kind": "photo", "prompt": "Take a photo or screenshot of your finished spreadsheet. Click a Total cell first so the formula shows.", "required": true },
+   { "id": "b17", "type": "task", "kind": "written", "prompt": "Why is **=B2*C2** better than typing the answer? Write 1–2 sentences.", "minWords": 10, "maxWords": 50, "required": true }
+  ]},
+  { "id": "p8", "title": "Quiz", "blocks": [
+   { "id": "b18", "type": "mcq", "question": "Every formula must start with…", "options": ["+", "=", "(", "SUM"], "answer": 1, "feedback": "The = tells the spreadsheet a calculation is coming." },
+   { "id": "b19", "type": "mcq", "question": "What does **=SUM(A1:A4)** do?", "options": ["Adds A1 and A4 only", "Adds A1, A2, A3 and A4", "Multiplies A1 to A4", "Counts the cells"], "answer": 1, "feedback": "A1:A4 is a range: every cell from A1 to A4." },
+   { "id": "b20", "type": "mcq", "question": "B2 holds 4 and C2 holds 5. What does **=B2+C2*2** give?", "options": ["18", "14", "13", "11"], "answer": 1, "feedback": "Multiply first: 5×2 = 10, then add 4 = 14." },
+   { "id": "b21", "type": "mcq", "question": "Which function finds the middle-ish value by adding and dividing?", "options": ["MAX", "MIN", "AVERAGE", "COUNT"], "answer": 2, "feedback": "AVERAGE adds the numbers and divides by how many there are." },
+   { "id": "b22", "type": "gapfill", "text": "A [cell] is one box. Its [cell reference] is the column letter and row number, like C4. A block of cells like C2:C9 is called a [range].", "feedback": "These three words come up in every spreadsheet lesson." }
+  ]},
+  { "id": "p9", "title": "Finished!", "blocks": [
+   { "id": "b23", "type": "task", "kind": "choose", "prompt": "How confident are you with formulas now? Choose one, then say why.", "options": ["😟 Not yet", "🙂 Getting there", "😎 Confident"], "minWords": 3, "required": true },
+   { "id": "b24", "type": "callout", "text": "Check every page has a ✓, then press **SEND TO TEACHER**." }
+  ]}
+ ],
+ "history": []
+}

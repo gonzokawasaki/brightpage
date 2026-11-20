@@ -1,0 +1,55 @@
+{
+ "format": "brightpage", "version": 1, "mode": "teacher",
+ "title": "Character Builder",
+ "teacher": { "name": "", "email": "" },
+ "settings": { "submitUrl": "", "allowStudentPages": true, "requireName": true, "ai": true },
+ "pages": [
+  { "id": "p1", "title": "", "blocks": [
+   { "id": "c1", "type": "heading", "text": "⚔ Character Builder" },
+   { "id": "c2", "type": "text", "text": "IGCSE First Language English · Narrative writing\n\nStrong stories have characters who feel real. Today you will **roll dice** to build a character, then write how they react to five tricky situations.\n\n**By the end of this lesson I can:**\n- describe a character's personality, not just their looks\n- **show** personality through what a character does, says and feels\n- keep a character consistent across different scenes" },
+   { "id": "c3", "type": "callout", "text": "The dice decide, not you! Your job is to make whatever you roll believable." }
+  ]},
+  { "id": "p2", "title": "Who are they?", "blocks": [
+   { "id": "c4", "type": "task", "kind": "short", "prompt": "Character name", "required": true },
+   { "id": "c5", "type": "task", "kind": "short", "prompt": "Age", "required": true },
+   { "id": "c6", "type": "dice", "label": "Background", "count": 1, "sides": 6, "options": ["Farmer's child", "Orphan", "Rich family", "Street performer", "Soldier's child", "Scholar"], "rerolls": 0 }
+  ]},
+  { "id": "p3", "title": "Task 1: Roll your personality stats", "blocks": [
+   { "id": "c7", "type": "text", "text": "Roll **3 dice** for each stat. The total shows how strong it is.\n- **3–7 Low** · **8–13 Average** · **14–18 High**" },
+   { "id": "c8", "type": "dice", "label": "Courage", "count": 3, "sides": 6, "low": "cowardly, runs from danger", "high": "fearless, even reckless", "rerolls": 0 },
+   { "id": "c9", "type": "dice", "label": "Kindness", "count": 3, "sides": 6, "low": "cold, selfish, cruel", "high": "generous, puts others first", "rerolls": 0 },
+   { "id": "c10", "type": "dice", "label": "Honesty", "count": 3, "sides": 6, "low": "lies easily, sneaky", "high": "always tells the truth", "rerolls": 0 },
+   { "id": "c11", "type": "dice", "label": "Confidence", "count": 3, "sides": 6, "low": "shy, quiet, doubts self", "high": "loud, proud, show-off", "rerolls": 0 },
+   { "id": "c12", "type": "dice", "label": "Curiosity", "count": 3, "sides": 6, "low": "uninterested, sticks to routine", "high": "nosy, must know everything", "rerolls": 0 },
+   { "id": "c13", "type": "dice", "label": "Temper", "count": 3, "sides": 6, "low": "calm, patient, hard to annoy", "high": "hot-headed, explodes", "rerolls": 0 }
+  ]},
+  { "id": "p4", "title": "Portrait", "blocks": [
+   { "id": "c14", "type": "task", "kind": "photo", "prompt": "Draw your character on paper, then take a photo of your drawing.", "required": true },
+   { "id": "c15", "type": "task", "kind": "written", "prompt": "Describe **2 details** of their appearance that *show* their personality. Example: a high Temper character might have bitten-down nails and a frown line.", "minWords": 25, "maxWords": 80, "required": true }
+  ]},
+  { "id": "p5", "title": "Task 2: Roll your traits", "blocks": [
+   { "id": "c16", "type": "text", "text": "Roll **1 dice** for each trait." },
+   { "id": "c17", "type": "dice", "label": "Ideal: what they want most", "count": 1, "sides": 6, "options": ["Fame", "Money", "Freedom", "Revenge", "To belong", "The truth"], "rerolls": 0 },
+   { "id": "c18", "type": "dice", "label": "Bond: who they'd protect", "count": 1, "sides": 6, "options": ["A little sister", "A best friend", "A grandparent", "A pet", "Their hometown", "Only themselves"], "rerolls": 0 },
+   { "id": "c19", "type": "dice", "label": "Flaw: their weakness", "count": 1, "sides": 6, "options": ["Jealous", "Lazy", "Stubborn", "Greedy", "Can't keep secrets", "Holds grudges"], "rerolls": 0 },
+   { "id": "c20", "type": "dice", "label": "Quirk: a strange habit", "count": 1, "sides": 6, "options": ["Bites nails", "Hums when nervous", "Always late", "Talks to self", "Collects odd things", "Avoids eye contact"], "rerolls": 0 },
+   { "id": "c21", "type": "task", "kind": "written", "prompt": "Write your four traits **in your own words**. Explain *why* your character might be like this, using their background.", "minWords": 40, "maxWords": 120, "required": true }
+  ]},
+  { "id": "p6", "title": "Task 3: How does your character react?", "blocks": [
+   { "id": "c22", "type": "callout", "text": "**Stat check.** For each scenario, choose the stat that matters most. Use **your character's** score, not what *you* would do.\n- **Low (3–7):** things go badly. Show their weakness.\n- **Average (8–13):** they struggle but cope.\n- **High (14–18):** the stat takes over, maybe too much!\nWrite what your character **does**, **says** and **feels**." },
+   { "id": "c23", "type": "task", "kind": "choose", "prompt": "**1.** On a crowded bus, your character finds a wallet full of cash with an ID card inside.", "options": ["Courage", "Kindness", "Honesty", "Confidence", "Curiosity", "Temper"], "minWords": 30, "required": true },
+   { "id": "c24", "type": "task", "kind": "choose", "prompt": "**2.** The lift stops between floors and the lights go out. They are trapped with a stranger.", "options": ["Courage", "Kindness", "Honesty", "Confidence", "Curiosity", "Temper"], "minWords": 30, "required": true },
+   { "id": "c25", "type": "task", "kind": "choose", "prompt": "**3.** Their best friend is accused of cheating in an exam. Your character knows the truth.", "options": ["Courage", "Kindness", "Honesty", "Confidence", "Curiosity", "Temper"], "minWords": 30, "required": true }
+  ]},
+  { "id": "p7", "title": "Task 3 (continued)", "blocks": [
+   { "id": "c26", "type": "task", "kind": "choose", "prompt": "**4.** They are lost in a strange city at night. Their phone has just died.", "options": ["Courage", "Kindness", "Honesty", "Confidence", "Curiosity", "Temper"], "minWords": 30, "required": true },
+   { "id": "c27", "type": "task", "kind": "choose", "prompt": "**5.** At a concert, the singer invites them on stage in front of 5,000 people.", "options": ["Courage", "Kindness", "Honesty", "Confidence", "Curiosity", "Temper"], "minWords": 30, "required": true }
+  ]},
+  { "id": "p8", "title": "Party check", "blocks": [
+   { "id": "c28", "type": "text", "text": "Swap devices with a partner and read their character." },
+   { "id": "c29", "type": "task", "kind": "written", "prompt": "Pick one scenario. Whose character handles it better, and **why**? Use both characters' stats in your answer.", "minWords": 30, "maxWords": 100, "required": true },
+   { "id": "c30", "type": "callout", "text": "Check every page has a ✓, then press **SEND TO TEACHER**." }
+  ]}
+ ],
+ "history": []
+}
