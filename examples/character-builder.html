@@ -47,6 +47,9 @@ label.f{display:block;margin:12px 0 4px;font-weight:600;font-size:.95rem}
 .bk{position:relative;border:1px dashed transparent;border-radius:12px;padding:4px;margin:0 -4px 8px}
 .bk:hover,.bk:focus-within{border-color:var(--line)}
 .bk .bt{display:flex;gap:4px;justify-content:flex-end;margin-bottom:2px}
+.empty{display:block;width:100%;text-align:left;min-height:56px;padding:14px 16px;border:2px dashed var(--line);border-radius:10px;background:transparent;color:var(--muted);font-style:italic}
+.empty:hover{border-color:var(--accent);color:var(--ink)}
+::placeholder{color:var(--muted);opacity:.7}
 .addblk{display:flex;gap:8px;align-items:center;margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
 .addblk select{max-width:260px}
 .ptitle{font-size:1.4rem;font-weight:700;border:1px dashed var(--line);margin-bottom:12px}
@@ -1068,8 +1071,8 @@ function openFile(f) {
 }
 function blankLesson() {
   return { format: 'brightpage', version: VERSION, title: 'New lesson', mode: 'teacher', pages: [
-    { title: '', blocks: [{ type: 'heading', text: 'New lesson' }, { type: 'text', text: 'What we will learn today.' }] },
-    { title: 'Task 1', blocks: [{ type: 'task', kind: 'written', prompt: 'Write 2–3 sentences about…', minWords: 20, required: true }] }] };
+    { title: '', blocks: [{ type: 'heading', text: '' }, { type: 'text', text: '' }] },
+    { title: '', blocks: [{ type: 'task', kind: 'written', prompt: '', minWords: 20, required: true }] }] };
 }
 
 /* player: student mode and teacher preview */
@@ -1095,7 +1098,7 @@ function renderPlayer() {
   else {
     if (cur === 0 && isStudent) page.append(nameStrip());
     if (item.p.title) page.append(el('h2', { text: item.p.title }));
-    item.p.blocks.forEach(b => page.append(renderBlock(b)));
+    item.p.blocks.forEach(b => { if (!isEmptyBlock(b)) page.append(renderBlock(b)); });
     if (cur === pages.length - 1 && !item.own) page.append(endStrip());
   }
   app.append(el('main', { class: 'player' }, page));
@@ -1239,14 +1242,43 @@ function change(fn) { snapshot(); fn(); render(); }
 function doUndo() { if (!undo.length) return toast('Nothing to undo'); const d = JSON.parse(undo.pop()); doc = normalise(d); render(); }
 const BLOCK_NAMES = { heading: 'Heading', text: 'Text', callout: 'Key point box', steps: 'Steps', flip: 'Flip cards', mcq: 'Quiz question', gapfill: 'Fill the gaps', task: 'Student task', dice: 'Dice roll', sheet: 'Mini spreadsheet' };
 const NEW_BLOCK = {
-  heading: () => ({ text: 'Heading' }), text: () => ({ text: 'Type here.' }), callout: () => ({ text: 'Key point.' }),
-  steps: () => ({ title: 'How to', items: ['First step', 'Second step'] }), flip: () => ({ cards: [{ front: 'Word', back: 'Meaning' }] }),
-  mcq: () => ({ question: 'Question?', options: ['Right answer', 'Wrong answer'], answer: 0, feedback: '' }),
-  gapfill: () => ({ text: 'The [answer] goes in brackets.', feedback: '' }),
-  task: () => ({ kind: 'written', prompt: 'Write 2–3 sentences about…', minWords: 20, required: true }),
-  dice: () => ({ label: 'Roll', count: 1, sides: 6, options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six'], rerolls: 0 }),
-  sheet: () => ({ title: 'Spreadsheet', cols: 3, rows: 3, cells: { A1: 'Item', B1: 'Price', A2: 'Pen', B2: '2' }, inputs: ['B3'], checks: [{ cell: 'B3', value: 2, formula: true }], hint: 'Type =B2' })
+  heading: () => ({ text: '' }), text: () => ({ text: '' }), callout: () => ({ text: '' }),
+  steps: () => ({ title: '', items: [] }), flip: () => ({ cards: [] }),
+  mcq: () => ({ question: '', options: [], answer: 0, feedback: '' }),
+  gapfill: () => ({ text: '', feedback: '' }),
+  task: () => ({ kind: 'written', prompt: '', minWords: 20, required: true }),
+  dice: () => ({ label: '', count: 1, sides: 6, options: [], rerolls: 0 }),
+  sheet: () => ({ title: '', cols: 3, rows: 3, cells: {}, inputs: [], checks: [], hint: '' })
 };
+// Grey hint text shown in empty boxes. It disappears as soon as you type.
+const PH = {
+  heading: { text: 'e.g. The Water Cycle' },
+  text: { text: 'Type your text here' },
+  callout: { text: 'e.g. Remember: every formula starts with =' },
+  steps: { title: 'e.g. How to', items: 'First step\nSecond step\nThird step' },
+  flip: { cards: 'Word | Meaning\nCell | One box in a spreadsheet' },
+  mcq: { question: 'e.g. Which symbol means multiply?', options: 'Right answer\nWrong answer\nWrong answer', feedback: 'e.g. Spreadsheets use * for multiply.' },
+  gapfill: { text: 'e.g. Every formula starts with [=].', feedback: 'Optional' },
+  task: { prompt: 'e.g. Write 2–3 sentences about…', options: 'Only for "choose" and "checklist" tasks' },
+  dice: { label: 'e.g. Courage', options: 'One\nTwo\nThree\nFour\nFive\nSix', low: 'e.g. cowardly, runs from danger', high: 'e.g. fearless, even reckless' },
+  sheet: { title: 'e.g. Snack stall sales', cells: 'A1 = Item\nB1 = Price\nA2 = Pen\nB2 = 2', inputs: 'e.g. B3', checks: 'e.g. B3 = 2 formula', hint: 'e.g. Start with =' }
+};
+// Filler text from older versions: treat it as empty so nobody has to delete it.
+const OLD_FILLER = ['Heading', 'Type here.', 'Key point.', 'How to', 'First step\nSecond step', 'Word | Meaning', 'Question?', 'Right answer\nWrong answer',
+  'The [answer] goes in brackets.', 'Write 2–3 sentences about…', 'Roll', 'One\nTwo\nThree\nFour\nFive\nSix', 'New lesson', 'What we will learn today.'];
+function isEmptyBlock(b) {
+  const blank = v => !String(v || '').trim() || OLD_FILLER.includes(String(v).trim());
+  switch (b.type) {
+    case 'heading': case 'text': case 'callout': case 'gapfill': return blank(b.text);
+    case 'steps': return !(b.items || []).length && blank(b.title);
+    case 'flip': return !(b.cards || []).length;
+    case 'mcq': return blank(b.question) && !(b.options || []).length;
+    case 'task': return blank(b.prompt);
+    case 'dice': return blank(b.label) && !(b.options || []).length;
+    case 'sheet': return !Object.keys(b.cells || {}).length && !(b.inputs || []).length;
+  }
+  return false;
+}
 const FIELDS = {
   heading: [['text', 'Heading', 'line']],
   text: [['text', 'Text', 'area', 'Use **bold**, *italic*, start a line with - for bullets, [label](https://link) for links.']],
@@ -1273,20 +1305,22 @@ const DEC = {
   cells: v => { const o = {}; v.split('\n').forEach(x => { const m = x.match(/^\s*([A-Za-z]\d+)\s*=\s?(.*)$/); if (m) o[m[1].toUpperCase()] = m[2].trim(); }); return o; },
   checks: v => v.split('\n').map(x => x.match(/^\s*([A-Za-z]\d+)\s*=\s*(-?[\d.]+)\s*(formula)?/i)).filter(Boolean).map(m => ({ cell: m[1].toUpperCase(), value: Number(m[2]), formula: !!m[3] }))
 };
-function editBlock(b) {
+function editBlock(b, isNew) {
   const inputs = {};
+  const ph = PH[b.type] || {};
   const body = el('div', null, (FIELDS[b.type] || []).map(([k, label, kind, extra]) => {
     let inp;
-    const v = ENC[kind](b[k]);
+    let v = ENC[kind](b[k]);
+    if (typeof v === 'string' && OLD_FILLER.includes(v.trim())) v = '';
     if (kind === 'bool') inp = el('input', { type: 'checkbox', checked: v });
     else if (kind === 'select') inp = el('select', null, extra.map(o => el('option', { value: o, selected: o === v }, o)));
-    else if (kind === 'line' || kind === 'num' || kind === 'index' || kind === 'csv') inp = el('input', { type: kind === 'num' || kind === 'index' ? 'number' : 'text', value: v });
-    else { inp = el('textarea', { style: kind === 'cells' || kind === 'lines' ? 'min-height:140px' : '' }); inp.value = v; }
+    else if (kind === 'line' || kind === 'num' || kind === 'index' || kind === 'csv') inp = el('input', { type: kind === 'num' || kind === 'index' ? 'number' : 'text', value: v, placeholder: ph[k] || null });
+    else { inp = el('textarea', { style: kind === 'cells' || kind === 'lines' || kind === 'pairs' ? 'min-height:140px' : '', placeholder: ph[k] || null }); inp.value = v; }
     inputs[k] = [inp, kind];
     return field(label, inp, kind !== 'select' && typeof extra === 'string' ? extra : null);
   }));
   if (!FIELDS[b.type]) body.append(el('p', null, 'This block can only be changed with AI help.'));
-  modal('Edit: ' + (BLOCK_NAMES[b.type] || b.type), body, [{ label: 'Cancel' }, { label: 'Save', primary: true, onclick: () => {
+  modal('Edit: ' + (BLOCK_NAMES[b.type] || b.type), body, [{ label: 'Cancel', onclick: () => { if (isNew && isEmptyBlock(b)) { const pg = doc.pages.find(p => p.blocks.includes(b)); if (pg) { pg.blocks.splice(pg.blocks.indexOf(b), 1); undo.pop(); render(); } } } }, { label: 'Save', primary: true, onclick: () => {
     change(() => { for (const k in inputs) { const [inp, kind] = inputs[k]; const val = DEC[kind](kind === 'bool' ? inp.checked : inp.value); if (val === undefined || (kind === 'num' && isNaN(val))) delete b[k]; else b[k] = val; } });
   } }]);
 }
@@ -1316,7 +1350,7 @@ function renderEditor() {
           el('button', { class: 'icon', title: 'Move down', 'aria-label': 'Move page down', disabled: i === doc.pages.length - 1, onclick: e => { e.stopPropagation(); change(() => { doc.pages.splice(i + 1, 0, doc.pages.splice(i, 1)[0]); cur = i + 1; }); } }, '↓'),
           el('button', { class: 'icon', title: 'Duplicate', 'aria-label': 'Duplicate page', onclick: e => { e.stopPropagation(); change(() => { const c = clone(pg); c.id = uid('p'); c.blocks.forEach(b => b.id = uid('b')); doc.pages.splice(i + 1, 0, c); cur = i + 1; }); } }, '⧉'),
           el('button', { class: 'icon', title: 'Delete', 'aria-label': 'Delete page', disabled: doc.pages.length < 2, onclick: e => { e.stopPropagation(); if (confirm('Delete this page?')) change(() => { doc.pages.splice(i, 1); cur = Math.max(0, i - 1); }); } }, '✕')) : null));
-  }), el('button', { class: 'btn', style: 'width:100%', onclick: () => change(() => { doc.pages.splice(cur + 1, 0, { id: uid('p'), title: 'New page', blocks: [{ id: uid('b'), type: 'text', text: 'Type here.' }] }); cur++; }) }, '+ New page'));
+  }), el('button', { class: 'btn', style: 'width:100%', onclick: () => change(() => { doc.pages.splice(cur + 1, 0, { id: uid('p'), title: '', blocks: [{ id: uid('b'), type: 'text', text: '' }] }); cur++; }) }, '+ New page'));
   const canvas = el('main', { class: 'canvas' });
   const page = el('div', { class: 'page' });
   const pt = el('input', { type: 'text', class: 'ptitle', value: p.title, placeholder: 'Page title (optional)', 'aria-label': 'Page title' });
@@ -1330,9 +1364,9 @@ function renderEditor() {
       el('button', { class: 'icon', 'aria-label': 'Move up', disabled: i === 0, onclick: () => change(() => p.blocks.splice(i - 1, 0, p.blocks.splice(i, 1)[0])) }, '↑'),
       el('button', { class: 'icon', 'aria-label': 'Move down', disabled: i === p.blocks.length - 1, onclick: () => change(() => p.blocks.splice(i + 1, 0, p.blocks.splice(i, 1)[0])) }, '↓'),
       el('button', { class: 'icon', 'aria-label': 'Delete block', onclick: () => { if (confirm('Delete this block?')) change(() => p.blocks.splice(i, 1)); } }, '✕')),
-    renderBlock(b))));
+    isEmptyBlock(b) ? el('button', { class: 'empty', onclick: () => editBlock(b) }, 'Empty ' + (BLOCK_NAMES[b.type] || b.type).toLowerCase() + ': click to add content') : renderBlock(b))));
   const sel = el('select', { 'aria-label': 'Block type' }, BLOCK_TYPES.map(t => el('option', { value: t }, BLOCK_NAMES[t])));
-  page.append(el('div', { class: 'addblk' }, sel, el('button', { class: 'btn', onclick: () => { const nb = Object.assign({ id: uid('b'), type: sel.value }, NEW_BLOCK[sel.value]()); change(() => p.blocks.push(nb)); editBlock(nb); } }, '+ Add block')));
+  page.append(el('div', { class: 'addblk' }, sel, el('button', { class: 'btn', onclick: () => { const nb = Object.assign({ id: uid('b'), type: sel.value }, NEW_BLOCK[sel.value]()); change(() => p.blocks.push(nb)); editBlock(nb, true); } }, '+ Add block')));
   canvas.append(page);
   app.append(el('div', { class: 'ed' }, thumbs, canvas));
 }
