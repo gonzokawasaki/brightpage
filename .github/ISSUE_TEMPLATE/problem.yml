@@ -1,0 +1,41 @@
+name: Something isn't working
+description: Tell us about a problem. No technical knowledge needed.
+title: "Problem: "
+labels: ["problem"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping! Just describe what happened in your own words.
+  - type: textarea
+    id: what
+    attributes:
+      label: What were you trying to do?
+      placeholder: e.g. Add a photo to a task page
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened instead?
+      placeholder: e.g. The page froze after I took the photo
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: What were you using?
+      options:
+        - iPad
+        - iPhone
+        - Android phone or tablet
+        - Windows laptop / PC
+        - Mac
+        - Chromebook
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else? (optional)
+      description: A screenshot really helps. Drag it into this box. Please don't share students' names or work.

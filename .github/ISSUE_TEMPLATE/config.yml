@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question or chat
+    url: https://github.com/gonzokawasaki/brightpage/discussions
+    about: Questions, tips and sharing how you use Brightpage

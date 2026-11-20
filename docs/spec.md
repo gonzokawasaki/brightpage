@@ -73,6 +73,17 @@ The file opens on its own in any PC or Mac browser. On iPad it opens through the
 - A size meter shows the file size; orange over 5 MB, red over 10 MB.
 - Saving writes a fresh copy of the same file with new data; the player code is refreshed to the latest version at the same time.
 
+## The one-file rule
+
+Every Brightpage file is one complete `.html` document. Nothing it needs to display can break.
+
+- **Always inside the file:** all images (copied in and shrunk, even if they came from Drive, a website or AI), the player code and styles, fonts (small built-in set or device fonts, no Google Fonts), icons.
+- **Allowed as links:** web pages and sources, YouTube/Vimeo videos, embedded online tools (simulations, Google Forms), and the account connections (Google sign-in, Drive save, Submit).
+- **Not allowed:** images or files linked from Drive, OneDrive or any website; anything needed just to display the page.
+- Pasting or dragging an image from the web or Drive downloads, shrinks and embeds it; if a site blocks that, the user is asked to save the image and add it.
+- On save, a check confirms nothing needed for display points outside the file.
+- Offline, videos and embeds show a neat card ("Video: needs internet") instead of a broken box.
+
 ## Editor
 
 PowerPoint-like: page thumbnails on the left, the page in the middle, a small toolbar on top.
@@ -94,6 +105,15 @@ PowerPoint-like: page thumbnails on the left, the page in the middle, a small to
 - Drag an image in, paste it, or tap to pick or take a photo. Images are shrunk automatically.
 - Undo and redo for every change.
 - Themes: 3 to start, picked with one tap.
+
+**Simple layout tools for student presentations**
+
+- Layouts: Title, Title + text, Text + image (picture left or right), Big picture + caption, Two columns, Quote / key fact, End page.
+- Text auto-fits its box so nothing spills off the page.
+- Tap a picture to crop it, choose which part stays in view, or swap it.
+- Switching layout keeps the text and pictures.
+- Speaker notes under each page.
+- Present full screen, then Share or Submit to the teacher.
 
 ## Page and block types
 
@@ -173,9 +193,22 @@ A web page can't send email by itself, so finished work leaves through the share
 - **Share button:** builds the PDF and opens the share sheet. Nothing to set up.
 - **Submit button:** posts to `settings.submitUrl`; the Apps Script saves the PDF + file to Drive → Class → Student, adds a sheet row (name, class, time, tasks done, score), and can email a copy. Offline results wait and send later.
 
+## Connectors: platform-agnostic, Google first
+
+The file and editor work anywhere. Saving and sending go through small connectors; Google is the first and best supported because it is free and most schools and students already have accounts.
+
+| Step | Google (first) | Later options |
+| --- | --- | --- |
+| Open / save | Drive via the iPad Files app (no setup); then Open from Drive / Save to Drive with Google sign-in, asking only for files Brightpage opens or creates (`drive.file`) | OneDrive, Dropbox, plain files |
+| Scores and results | Google Sheet via Apps Script (reference connector) | Microsoft Forms / Power Automate, Moodle, own server |
+| Handing in | Drive folder per class + Share to Classroom | Teams, email |
+| Hosting the app | GitHub Pages | School website |
+
+The Submit connector is a simple, documented POST so any platform can receive it.
+
 ## AI polish and collaboration
 
-AI only ever suggests; a person accepts or rejects every change, and every AI change is logged in `history`.
+AI only ever suggests; a person accepts or rejects every change, and every AI change is logged in `history`. All AI must follow [AI.md](../AI.md); a short copy of those rules is stored inside every file, and the app checks AI changes against `docs/schema.json` before showing them.
 
 - One-tap: Polish, Add interaction, Add images, Shorten.
 - Collaboration mode: chat panel; changes highlighted on thumbnails with Accept / Reject.
@@ -183,6 +216,8 @@ AI only ever suggests; a person accepts or rejects every change, and every AI ch
 - AI can be switched off per file (`settings.ai: false`).
 
 ## Privacy, security and limits
+
+**Use at your own risk.** Brightpage is free, open-source software provided as is, with no warranty. Users are responsible for how they use it, including what personal or student information they put into files, where they store them, who they share them with, and which online services they connect it to. Brightpage has no servers of its own and collects no data. Users should check their school's privacy and safeguarding rules. The app shows this in an About box and as a reminder before the first Submit or AI use.
 
 - Answers are inside the file: fine for class quizzes, not for tests.
 - Check school policy before storing student work in a personal Google Drive.

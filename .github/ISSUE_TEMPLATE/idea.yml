@@ -1,0 +1,26 @@
+name: I have an idea
+description: Suggest something that would help in your classroom.
+title: "Idea: "
+labels: ["idea"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What's your idea?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: How would it help you or your students?
+      placeholder: e.g. My Year 8s could hand in their science projects without using email
+  - type: dropdown
+    id: role
+    attributes:
+      label: Are you a…
+      options:
+        - Teacher
+        - Student
+        - Parent
+        - Developer
+        - Other
