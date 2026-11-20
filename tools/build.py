@@ -4,13 +4,14 @@
 Every output is one self-contained HTML file: player styles + player script + lesson data.
 Run from anywhere:  python3 tools/build.py
 """
-import html, json, pathlib
+import html, json, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CSS = (ROOT / "player/brightpage.css").read_text()
 JS = (ROOT / "player/brightpage.js").read_text()
-BRIEF = (ROOT / "AI.md").read_text().strip()  # the brief for AI: the heart of the standard
-for name, text in (("player script", JS), ("AI.md", BRIEF)):
+# brightpage.md is the standard: the brief for AI, the lesson format, the app spec and the Drive receiver.
+BRIEF = (ROOT / "brightpage.md").read_text().strip()
+for name, text in (("player script", JS), ("brightpage.md", BRIEF)):
     assert "</script" not in text.lower() and "<!--" not in text, f"{name} must not contain </script or <!--"
 
 
@@ -27,6 +28,11 @@ def build(data):
         f'<style id="bp-style">{CSS}</style>\n<script id="bp-player">{JS}</script>\n</body>\n</html>\n'
     )
 
+
+# The Google receiver code lives in brightpage.md; copy it out so teachers can also grab it on its own.
+code = re.search(r"```javascript\n(.*?)\n```", BRIEF, re.S).group(1)
+(ROOT / "apps-script/Code.gs").write_text(code + "\n")
+print("apps-script/Code.gs (from brightpage.md)")
 
 (ROOT / "app/index.html").write_text(build(None))
 print("app/index.html")

@@ -32,17 +32,17 @@ Each demo opens in **teacher mode**. Click **▶ Preview** to see what students 
 
 No AI keys, no setup. Use ChatGPT, Gemini, Claude or Copilot in your browser:
 
-1. **[Download the starter file](https://gonzokawasaki.github.io/brightpage/examples/brightpage-starter.html)** (or any Brightpage lesson).
+1. **[Download the starter file](https://gonzokawasaki.github.io/brightpage/examples/brightpage-starter.html)** (or any Brightpage lesson, or just [brightpage.md](https://raw.githubusercontent.com/gonzokawasaki/brightpage/main/brightpage.md)).
 2. **Upload it to your AI chat**, with your worksheet, slides or notes if you like, and say what you want: *"Make a 45-minute lesson for Year 8 on the water cycle with a quiz and a photo task."*
 3. **Open the file the AI gives back.** If it looks wrong, open it with [Brightpage](https://gonzokawasaki.github.io/brightpage/app/) → *Open a lesson*, which repairs it.
 
-Every teacher file carries its own instructions for the AI ([AI.md](AI.md)), so you never have to explain Brightpage to it.
+Every teacher file carries its own instructions for the AI ([brightpage.md](brightpage.md)), so you never have to explain Brightpage to it. The AI asks you a few quick questions first, then builds.
 
 ### Brightpage is a simple standard
 
 The code isn't the precious part: any AI can rewrite it. What matters is:
 
-1. **[The brief (AI.md)](AI.md):** what a good lesson is, the rules (privacy, safety, what may not change) and the **product outcomes** every Brightpage file must keep (one file, teacher and student modes, SEND TO TEACHER, student safety, works on iPad).
+1. **[brightpage.md](brightpage.md):** one plain-English file that is the whole of Brightpage: what a good lesson is, the rules (privacy, safety, what may not change) and the **product outcomes** every Brightpage file must keep (one file, teacher and student modes, SEND TO TEACHER, student safety, works on iPad).
 2. **The lesson data:** plain JSON inside the file, so any AI or tool can read and write it.
 
 The app in this repo is one way of meeting that standard. The brief sits at the top of every teacher file, so it travels with the lesson.
@@ -114,7 +114,7 @@ Brightpage is free, open-source software provided **as is, with no warranty**. Y
 ## For developers and the curious
 
 - [Full specification](docs/spec.md): how the file format and app work
-- [AI guidelines](AI.md): rules any AI must follow when editing a Brightpage file
+- [brightpage.md](brightpage.md): the standard. Give it to any AI to make a lesson or build the whole app
 
 ```
 app/          the editor (published with GitHub Pages)

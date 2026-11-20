@@ -49,7 +49,7 @@ See [security.md](security.md) for prompt-injection protection.
 
 ## The file carries its own AI brief
 
-Every teacher file starts with `<script type="text/plain" id="bp-ai" data-for="teacher">` holding [AI.md](../AI.md), then the lesson JSON (`bp-data`), then the app code. A teacher uploads the file to any web AI chat and says what they want; the AI follows the brief. AI.md defines the **product outcomes** that must hold whatever the code looks like, so the code can be regenerated freely. Student copies carry a short note instead, asking an AI to help the student learn rather than do the tasks for them.
+Every teacher file starts with `<script type="text/plain" id="bp-ai" data-for="teacher">` holding [brightpage.md](../brightpage.md), then the lesson JSON (`bp-data`), then the app code. A teacher uploads the file to any web AI chat and says what they want; the AI follows the brief. brightpage.md defines the **product outcomes** that must hold whatever the code looks like, so the code can be regenerated freely. Student copies carry a short note instead, asking an AI to help the student learn rather than do the tasks for them.
 
 Opening any file in Brightpage (whole file, broken file, a reply with a JSON code block, or bare JSON) finds the lesson and rebuilds a fresh, working file around it.
 
@@ -223,7 +223,7 @@ The Submit connector is a simple, documented POST so any platform can receive it
 
 ## AI polish and collaboration
 
-AI only ever suggests; a person accepts or rejects every change, and every AI change is logged in `history`. All AI must follow [AI.md](../AI.md); a short copy of those rules is stored inside every file, and the app checks AI changes against `docs/schema.json` before showing them.
+AI only ever suggests; a person accepts or rejects every change, and every AI change is logged in `history`. All AI must follow [brightpage.md](../brightpage.md), which is stored inside every teacher file.
 
 - One-tap: Polish, Add interaction, Add images, Shorten.
 - Collaboration mode: chat panel; changes highlighted on thumbnails with Accept / Reject.
