@@ -1,5 +1,7 @@
 # Brightpage
 
+### 👉 [Click here to start Brightpage](https://gonzokawasaki.github.io/brightpage/app/)
+
 **Brightpage helps teachers structure classroom and online teaching into interactive documents that students work through and complete, task by task.**
 
 Think of it as a simpler, lighter PowerPoint or Sway:
