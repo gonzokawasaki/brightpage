@@ -25,8 +25,27 @@ Each demo opens in **teacher mode**. Click **▶ Preview** to see what students 
 
 ### One file, two modes
 
-- **Teacher mode:** edit pages, set your name, email and Google Drive link. The easiest way to edit is **✨ Edit with AI**: copy the lesson into any AI chat, ask for changes, paste the reply back and accept it.
+- **Teacher mode:** edit pages, set your name, email and Google Drive link, preview, and send out to students.
 - **Student mode:** made with **Send out to students**. Students work through the pages, roll dice, answer, add their own pages and press **SEND TO TEACHER**. They can't change your content, and there are no AI tools.
+
+### Make and change lessons with the AI you already use
+
+No AI keys, no setup. Use ChatGPT, Gemini, Claude or Copilot in your browser:
+
+1. **[Download the starter file](https://gonzokawasaki.github.io/brightpage/examples/brightpage-starter.html)** (or any Brightpage lesson).
+2. **Upload it to your AI chat**, with your worksheet, slides or notes if you like, and say what you want: *"Make a 45-minute lesson for Year 8 on the water cycle with a quiz and a photo task."*
+3. **Open the file the AI gives back.** If it looks wrong, open it with [Brightpage](https://gonzokawasaki.github.io/brightpage/app/) → *Open a lesson*, which repairs it.
+
+Every teacher file carries its own instructions for the AI ([AI.md](AI.md)), so you never have to explain Brightpage to it.
+
+### Brightpage is a simple standard
+
+The code isn't the precious part: any AI can rewrite it. What matters is:
+
+1. **[The brief (AI.md)](AI.md):** what a good lesson is, the rules (privacy, safety, what may not change) and the **product outcomes** every Brightpage file must keep (one file, teacher and student modes, SEND TO TEACHER, student safety, works on iPad).
+2. **The lesson data:** plain JSON inside the file, so any AI or tool can read and write it.
+
+The app in this repo is one way of meeting that standard. The brief sits at the top of every teacher file, so it travels with the lesson.
 
 SEND TO TEACHER saves the work in your Google Drive. [Set it up in 5 minutes](apps-script/SETUP.md). Worried about students tricking an AI? See [security and prompt injection](docs/security.md).
 

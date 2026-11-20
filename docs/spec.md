@@ -47,6 +47,12 @@ The editor and the presentation are the **same file** in two modes, set by `"mod
 
 See [security.md](security.md) for prompt-injection protection.
 
+## The file carries its own AI brief
+
+Every teacher file starts with `<script type="text/plain" id="bp-ai" data-for="teacher">` holding [AI.md](../AI.md), then the lesson JSON (`bp-data`), then the app code. A teacher uploads the file to any web AI chat and says what they want; the AI follows the brief. AI.md defines the **product outcomes** that must hold whatever the code looks like, so the code can be regenerated freely. Student copies carry a short note instead, asking an AI to help the student learn rather than do the tasks for them.
+
+Opening any file in Brightpage (whole file, broken file, a reply with a JSON code block, or bare JSON) finds the lesson and rebuilds a fresh, working file around it.
+
 ## File format
 
 A Brightpage file is a normal `.html` file named like `water-cycle.brightpage.html`. It holds three parts:

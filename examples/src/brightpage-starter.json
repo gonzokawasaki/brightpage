@@ -1,0 +1,21 @@
+{
+ "format": "brightpage", "version": 1, "mode": "teacher",
+ "title": "My new lesson",
+ "starter": true,
+ "teacher": { "name": "", "email": "" },
+ "settings": { "submitUrl": "", "allowStudentPages": true, "requireName": true, "ai": true },
+ "pages": [
+  { "id": "p1", "title": "", "blocks": [
+   { "id": "b1", "type": "heading", "text": "Make a lesson with AI" },
+   { "id": "b2", "type": "steps", "title": "How to", "items": [
+     "Open the AI chat you use (ChatGPT, Gemini, Claude, Copilot…).",
+     "Upload **this file**, plus your worksheet, slides or notes if you have them.",
+     "Say what you want, e.g. *\"Make a 45-minute Brightpage lesson for Year 8 on the water cycle, with a quiz and one photo task.\"*",
+     "Download the file the AI makes and open it in your browser.",
+     "Check it, click **⚙ Settings** to add your name, email and Google Drive link, then click **Send out to students**."
+   ]},
+   { "id": "b3", "type": "callout", "text": "The instructions for the AI are already inside this file. You don't need to explain Brightpage to it." }
+  ]}
+ ],
+ "history": []
+}
